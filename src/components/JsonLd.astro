@@ -1,0 +1,16 @@
+---
+/**
+ * Gibt ein Objekt als JSON-LD aus. Ein Aufruf pro Markup-Typ; mehrere Blöcke
+ * auf einer Seite sind erlaubt und werden über `@id` miteinander verknüpft.
+ */
+interface Props {
+	data: Record<string, unknown>;
+}
+
+const { data } = Astro.props;
+
+/** `<` maskieren, damit der Inhalt das Script-Tag nicht vorzeitig schließen kann. */
+const json = JSON.stringify(data).replace(/</g, '\\u003c');
+---
+
+<script type="application/ld+json" is:inline set:html={json} />

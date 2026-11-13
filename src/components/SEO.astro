@@ -1,0 +1,48 @@
+---
+import type { ImageMetadata } from 'astro';
+import ogStandard from '../assets/og-standard.jpg';
+import { SITE } from '../consts';
+
+interface Props {
+	title?: string;
+	description?: string;
+	/** Auf true setzen für Seiten, die nicht in den Index sollen. */
+	noindex?: boolean;
+	/** Vorschaubild beim Teilen. Ohne Angabe das Standardbild mit Porträt. */
+	image?: ImageMetadata;
+	imageAlt?: string;
+}
+
+const {
+	title,
+	description = SITE.description,
+	noindex = false,
+	image = ogStandard,
+	imageAlt = 'Carina Hillenbrand, systemischer Coach in Stein bei Nürnberg',
+} = Astro.props;
+
+const pageTitle = title ? `${title} — ${SITE.title}` : SITE.title;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+/** Muss absolut sein — relative Pfade lesen die Vorschau-Crawler nicht. */
+const ogImage = new URL(image.src, Astro.site);
+---
+
+<title>{pageTitle}</title>
+<meta name="description" content={description} />
+{/* Kein Canonical auf noindex-Seiten: Die 404-Seite zeigte sonst auf /404/, eine URL, die es
+    nicht gibt — und noindex plus Canonical ist laut Google widersprüchlich. */}
+{!noindex && <link rel="canonical" href={canonical} />}
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={SITE.title} />
+<meta property="og:title" content={pageTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:locale" content={SITE.locale} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content={String(image.width)} />
+<meta property="og:image:height" content={String(image.height)} />
+<meta property="og:image:alt" content={imageAlt} />
+<!-- X fällt für das Bild auf Open Graph zurück, ein twitter:image ist nicht nötig. -->
+<meta name="twitter:card" content="summary_large_image" />

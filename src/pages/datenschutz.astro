@@ -1,0 +1,122 @@
+---
+import { CONTACT } from '../consts';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const h2 = 'font-display font-semibold text-cream';
+const link = 'underline underline-offset-2 transition hover:text-cream';
+---
+
+<BaseLayout
+	title="Datenschutz"
+	description="Informationen zur Verarbeitung personenbezogener Daten auf dieser Website."
+>
+	<h1 class="font-display text-4xl font-extrabold tracking-[-0.03em]">
+		Datenschutzerklärung
+	</h1>
+
+	<div class="mt-10 space-y-8 leading-[1.7] text-cream/70">
+		<section>
+			<h2 class={h2}>Verantwortliche Stelle</h2>
+			<p class="mt-2">
+				Carina Hillenbrand
+				<br />
+				Blumenstraße 58
+				<br />
+				90547 Stein
+				<br />
+				E-Mail:{' '}
+				<a href={`mailto:${CONTACT.legalEmail}`} class={link}>
+					{CONTACT.legalEmail}
+				</a>
+				<br />
+				Telefon:{' '}
+				<a href={CONTACT.phoneHref} class={link}>
+					{CONTACT.phone}
+				</a>
+			</p>
+		</section>
+
+		<section>
+			<h2 class={h2}>Speicherdauer</h2>
+			<p class="mt-2">
+				Wir speichern personenbezogene Daten so lange, wie es für den jeweiligen
+				Zweck erforderlich ist, oder bis Sie der Verarbeitung widersprechen bzw.
+				Ihre Einwilligung widerrufen. Gesetzliche Aufbewahrungspflichten, etwa
+				aus dem Handels- und Steuerrecht, bleiben davon unberührt.
+			</p>
+		</section>
+
+		<section>
+			<h2 class={h2}>Hosting</h2>
+			<p class="mt-2">
+				Diese Website wird bei Cloudflare gehostet, die Domain liegt bei
+				checkdomain GmbH, Große Burgstraße 27/29, 23552 Lübeck. Beim Aufruf der
+				Seite werden technisch notwendige Daten (u. a. IP-Adresse, Zeitpunkt,
+				aufgerufene Ressource) verarbeitet. Die Übertragung erfolgt durchgehend
+				verschlüsselt über SSL/TLS.
+			</p>
+		</section>
+
+		<section>
+			<h2 class={h2}>Anfrage per E-Mail oder Telefon</h2>
+			<p class="mt-2">
+				Wenn Sie uns per E-Mail oder Telefon kontaktieren, verarbeiten wir Ihre
+				Anfrage einschließlich der dabei angegebenen Daten (Name, Kontaktdaten,
+				Inhalt der Anfrage), um Ihr Anliegen zu bearbeiten (Art. 6 Abs. 1 lit. b
+				bzw. f DSGVO). Diese Daten geben wir nicht ohne Ihre Einwilligung
+				weiter.
+			</p>
+		</section>
+
+		<section>
+			<h2 class={h2}>Soziale Medien</h2>
+			<p class="mt-2">
+				Wir verlinken auf dieser Website auf unser Profil bei LinkedIn (LinkedIn
+				Ireland Unlimited Company, Wilton Plaza, Wilton Place, Dublin 2,
+				Irland). Es handelt sich dabei um einen einfachen Link, es ist kein
+				Plugin von LinkedIn eingebunden — beim bloßen Aufruf dieser Website
+				werden also keine Daten an LinkedIn übertragen. Erst wenn Sie dem Link
+				folgen, gilt die Datenschutzerklärung von LinkedIn.
+			</p>
+		</section>
+
+		<section>
+			<h2 class={h2}>Schriftarten</h2>
+			<p class="mt-2">
+				Die auf dieser Website verwendeten Schriftarten sind lokal eingebunden.
+				Es findet dabei keine Verbindung zu Servern von Google oder anderen
+				Drittanbietern statt.
+			</p>
+		</section>
+
+		<section>
+			<h2 class={h2}>Cookies und Tracking</h2>
+			<p class="mt-2">
+				Wir setzen auf dieser Website keine Cookies und keine Analyse- oder
+				Tracking-Tools ein.
+			</p>
+		</section>
+
+		<section>
+			<h2 class={h2}>Ihre Rechte</h2>
+			<p class="mt-2">
+				Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung
+				der Verarbeitung, Datenübertragbarkeit und Widerspruch sowie ein
+				Beschwerderecht bei einer Aufsichtsbehörde, für uns zuständig ist das
+				Bayerische Landesamt für Datenschutzaufsicht (BayLDA). Eine erteilte
+				Einwilligung können Sie jederzeit mit Wirkung für die Zukunft
+				widerrufen.
+			</p>
+		</section>
+
+		<section>
+			<h2 class={h2}>Datenschutzbeauftragte</h2>
+			<p class="mt-2">
+				Wir sind als Einzelperson gesetzlich nicht verpflichtet, eine
+				Datenschutzbeauftragte zu benennen.
+			</p>
+		</section>
+
+		<p class="text-xs opacity-70">Stand: November 2026</p>
+	</div>
+</BaseLayout>

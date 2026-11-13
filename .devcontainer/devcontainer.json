@@ -1,0 +1,32 @@
+{
+  "name": "carinahillenbrand.de",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node",
+  "runArgs": ["--userns=keep-id:uid=1000,gid=1000"],
+  "remoteEnv": {
+    "PNPM_HOME": "/home/node/.local/share/pnpm",
+    "PATH": "/home/node/.local/share/pnpm/bin:/home/node/.local/bin:${containerEnv:PATH}"
+  },
+  "forwardPorts": [4337],
+  "portsAttributes": {
+    "4337": {
+      "label": "Astro dev server",
+      "onAutoForward": "notify"
+    }
+  },
+  "postCreateCommand": {
+    "claude-memory": "slug=$(printf '%s' '${containerWorkspaceFolder}' | tr -c '[:alnum:]' '-') && mkdir -p \"$HOME/.claude/projects/$slug\" && ln -sfn '${containerWorkspaceFolder}/.claude/memory' \"$HOME/.claude/projects/$slug/memory\"",
+    "claude-cli": "curl -fsSL https://claude.ai/install.sh | bash",
+    "deps": "curl -fsSL https://get.pnpm.io/install.sh | env PNPM_HOME=$HOME/.local/share/pnpm SHELL=/bin/bash sh - && $HOME/.local/share/pnpm/bin/pnpm install"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "astro-build.astro-vscode",
+        "bradlc.vscode-tailwindcss",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "anthropic.claude-code"
+      ]
+    }
+  }
+}

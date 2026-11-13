@@ -1,0 +1,23 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# build output
+dist/
+.astro/
+
+# environment
+.env
+.env.*
+!.env.example
+
+# tooling caches
+*.tsbuildinfo
+
+# os
+.DS_Store
+Thumbs.db
+
+# claude code (local session state — memory itself lives in .claude/memory and IS committed)
+.claude/settings.local.json
+tmp/

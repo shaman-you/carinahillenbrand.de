@@ -1,0 +1,52 @@
+@import 'tailwindcss';
+
+/* Projekt-Tokens — hier werden Farben, Schriften und Spacing zentral definiert.
+   Alles hier Definierte ist automatisch als Utility verfügbar (z. B. text-cream, bg-night).
+   Grundstil wie carinahillenbrand.com, nur die Akzentfarbe ist eine andere. */
+@theme {
+	--font-sans:
+		'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI',
+		Roboto, sans-serif;
+	--font-display: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+
+	/* Tiefschwarz und Cloud Dancer — dieselben Werte wie auf carinahillenbrand.com. */
+	--color-night: #0a0a0a;
+	--color-night-soft: #1a1a1a;
+	--color-cream: #edeae0;
+	--color-cream-soft: #f5f3eb;
+
+	/* Akzent: Salbeigrün. Die helle Variante für Text und Hover auf dunklem Grund,
+	   die Basisfarbe hat dort zu wenig Kontrast für Fließtext. */
+	--color-accent: #55764a;
+	--color-accent-light: #6e9163;
+
+	/* Wortband unter dem Kopf der Startseite: zwei gleiche Listen, eine Breite weit verschoben. */
+	--animate-banderole: banderole 42s linear infinite;
+
+	@keyframes banderole {
+		from {
+			transform: translateX(-50%);
+		}
+		to {
+			transform: translateX(0);
+		}
+	}
+}
+
+@layer base {
+	html {
+		scroll-behavior: smooth;
+	}
+
+	body {
+		background-color: var(--color-night);
+		color: var(--color-cream);
+		font-family: var(--font-sans);
+		-webkit-font-smoothing: antialiased;
+	}
+
+	:focus-visible {
+		outline: 2px solid var(--color-accent-light);
+		outline-offset: 2px;
+	}
+}

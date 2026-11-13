@@ -1,0 +1,73 @@
+---
+import { CONTACT } from '../consts';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const h2 = 'font-display font-semibold text-cream';
+const link = 'underline underline-offset-2 transition hover:text-cream';
+---
+
+<BaseLayout
+	title="Impressum"
+	description="Impressum und Angaben gemäß § 5 DDG."
+>
+	<h1 class="font-display text-4xl font-extrabold tracking-[-0.03em]">
+		Impressum
+	</h1>
+
+	<div class="mt-10 space-y-8 leading-[1.7] text-cream/70">
+		<section>
+			<h2 class={h2}>Angaben gemäß § 5 DDG</h2>
+			<p class="mt-2">
+				Carina Hillenbrand
+				<br />
+				Carina Hillenbrand Coaching
+				<br />
+				Blumenstraße 58
+				<br />
+				90547 Stein
+			</p>
+		</section>
+
+		<section>
+			<h2 class={h2}>Kontakt</h2>
+			<p class="mt-2">
+				Telefon:{' '}
+				<a href={CONTACT.phoneHref} class={link}>
+					{CONTACT.phone}
+				</a>
+				<br />
+				E-Mail:{' '}
+				<a href={`mailto:${CONTACT.legalEmail}`} class={link}>
+					{CONTACT.legalEmail}
+				</a>
+			</p>
+		</section>
+
+		<section>
+			<h2 class={h2}>Umsatzsteuer-ID</h2>
+			<p class="mt-2">
+				Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:
+				DE354989774
+			</p>
+		</section>
+
+		<section>
+			<h2 class={h2}>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
+			<p class="mt-2">
+				Carina Hillenbrand
+				<br />
+				Blumenstraße 58
+				<br />
+				90547 Stein
+			</p>
+		</section>
+
+		<section>
+			<h2 class={h2}>Verbraucherstreitbeilegung/Universalschlichtungsstelle</h2>
+			<p class="mt-2">
+				Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren
+				vor einer Verbraucherschlichtungsstelle teilzunehmen.
+			</p>
+		</section>
+	</div>
+</BaseLayout>

@@ -1,0 +1,388 @@
+---
+import { Image } from 'astro:assets';
+import aufstellung from '../assets/aufstellung.jpg';
+import carinaPortrait from '../assets/carina-portrait.jpg';
+import carinaVortrag from '../assets/carina-vortrag.jpg';
+import nachhaltigWirken from '../assets/nachhaltig-wirken.jpg';
+import ressourcenAktivieren from '../assets/ressourcen-aktivieren.jpg';
+import systemischDenken from '../assets/systemisch-denken.jpg';
+import workshop from '../assets/workshop.jpg';
+import JsonLd from '../components/JsonLd.astro';
+import { CONTACT } from '../consts';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import * as schema from '../schema';
+
+/** Kleine Überschrift über einem Abschnitt, in der Akzentfarbe. */
+const eyebrow =
+	'font-display text-xs font-extrabold tracking-[0.09em] text-accent-light uppercase';
+const h2 =
+	'mt-4 font-display text-[clamp(26px,4.5vw,34px)] leading-[1.12] font-extrabold tracking-[-0.03em]';
+const body = 'mt-4 text-[17px] leading-[1.7] opacity-90';
+const sectionPad = 'px-6 sm:px-10 lg:px-14';
+/** Helles Salbeigrün mit dunkler Schrift: Das dunklere Grün hätte mit beiden Schriftfarben
+ * zu wenig Kontrast für Text dieser Größe. */
+const button =
+	'inline-block rounded-full bg-accent-light px-9 py-5 font-display text-base font-extrabold text-night transition hover:-translate-y-0.5 hover:bg-cream';
+
+/** Alle „Erstgespräch"-Buttons öffnen eine Mail, wie auf der bisherigen Seite. */
+const mailto = `mailto:${CONTACT.email}?subject=${encodeURIComponent('Erstgespräch')}`;
+
+/** Einheitliche Farbstimmung für alle Bilder, wie auf carinahillenbrand.com. */
+const photoGrade =
+	'sepia-[0.12] saturate-[0.82] brightness-[0.93] contrast-[1.04]';
+
+const banderole = [
+	'Systemisches Coaching',
+	'Führung',
+	'Teamcoaching',
+	'Organisationsentwicklung',
+	'Aufstellungsarbeit',
+	'Psychodrama',
+	'Training',
+	'Sterbebegleitung',
+];
+
+const prinzipien = [
+	{
+		title: 'Systemisch denken',
+		text: 'Wir sehen immer das große Ganze: Mensch, Team, Organisation.',
+		image: systemischDenken,
+		alt: 'Holzfiguren, durch Linien miteinander verbunden',
+	},
+	{
+		title: 'Ressourcen aktivieren',
+		text: 'Die Lösungen liegen bereits in Ihnen. Ich begleite dabei, diese sichtbar zu machen.',
+		image: ressourcenAktivieren,
+		alt: 'Reihe von Holzfiguren, eine davon leuchtet von innen',
+	},
+	{
+		title: 'Nachhaltig wirken',
+		text: 'Erkenntnisse werden zu gelebter Praxis.',
+		image: nachhaltigWirken,
+		alt: 'Steine auf Holzsockeln im Sonnenlicht',
+	},
+];
+
+const angebote = [
+	{
+		title: 'Business & Executive Coaching',
+		text: 'Für Unternehmer:innen und Führungskräfte, die souverän führen und exzellent handeln möchten.',
+	},
+	{
+		title: 'Teamcoaching & Organisationsentwicklung',
+		text: 'Für Teams, die Zusammenarbeit und Kommunikation stärken wollen – auch mit Methoden wie systemischer Aufstellungsarbeit.',
+	},
+	{
+		title: 'Training & Ausbildung',
+		text: 'Ich leite Seminare und bilde Sterbebegleiter:innen aus. Wissen zu teilen und Menschen in ihrer Rolle wachsen zu sehen, ist ein zentraler Teil meiner Arbeit.',
+	},
+	{
+		title: 'Persönliches Coaching',
+		text: 'Für Menschen, die in Wendepunkten Orientierung, Selbstvertrauen und neue Perspektiven suchen – beruflich wie privat.',
+	},
+];
+
+const zielgruppen = [
+	'Führungskräfte, die ihre Führungsqualität vertiefen möchten.',
+	'Teams, die sich nicht mit „ganz okay“ zufriedengeben.',
+	'Organisationen, die Wandel aktiv gestalten wollen.',
+	'Menschen, die andere in herausfordernden Zeiten professionell begleiten möchten.',
+];
+
+const schritte = [
+	{ title: 'Kostenloses Erstgespräch', text: 'Wir lernen uns kennen.' },
+	{ title: 'Zielklärung', text: 'Wir definieren, was Sie erreichen möchten.' },
+	{
+		title: 'Coachingprozess',
+		text: 'Individuell, systemisch und praxisnah.',
+	},
+	{ title: 'Umsetzung & Wirkung', text: 'Neue Perspektiven, die bleiben.' },
+];
+
+const websiteLd = schema.websiteLd(Astro.site!);
+const personLd = schema.personLd(Astro.site!, carinaPortrait.src);
+---
+
+<BaseLayout
+	wide
+	title="Systemisches Coaching in Stein bei Nürnberg"
+	description="Coaching, das Türen öffnet – für Sie, Ihr Team, Ihr Business. Systemisches Coaching für Führung, Teams und persönliche Entwicklung."
+>
+	<JsonLd slot="head" data={websiteLd} />
+	<JsonLd slot="head" data={personLd} />
+
+	<!-- Kopf: Bild über die volle Breite, Text links darüber, darunter das Wortband -->
+	<section>
+		<div class="relative overflow-hidden">
+			<Image
+				src={aufstellung}
+				alt=""
+				widths={[900, 1600]}
+				sizes="100vw"
+				priority
+				class={`absolute inset-0 h-full w-full object-cover ${photoGrade}`}
+			/>
+			<div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(10,10,10,0.92)_0%,rgba(10,10,10,0.6)_55%,rgba(10,10,10,0.2)_100%)]"></div>
+			<div class="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_60%,var(--color-night)_100%)]"></div>
+			<div
+				class={`relative mx-auto flex min-h-[70svh] w-full max-w-[1100px] items-center py-20 sm:py-28 ${sectionPad}`}
+			>
+				<div>
+					<span class="inline-flex rounded-full border border-accent-light px-5 py-2.5 font-display text-xs font-extrabold tracking-[0.09em] text-accent-light uppercase">
+						Coaching, das Türen öffnet
+					</span>
+					<h1 class="mt-8 max-w-[18ch] font-display text-[clamp(38px,6.5vw,68px)] leading-[1.02] font-extrabold tracking-[-0.04em]">
+						Systemisches Coaching für Führung, Teams und
+						<span class="text-cream/40">persönliche Entwicklung.</span>
+					</h1>
+					<p class="mt-8 max-w-[52ch] text-lg leading-[1.6] opacity-85">
+						Ich begleite Menschen und Organisationen dabei, Klarheit zu
+						gewinnen, Entscheidungen mit Stärke zu treffen und Veränderungen
+						nachhaltig zu gestalten. Als systemische Personal- und
+						Business-Coachin, Trainerin und Ausbilderin begleite ich Sie –
+						professionell, menschlich, wirkungsvoll.
+					</p>
+					<a href={mailto} class={`mt-10 ${button}`}>
+						Jetzt Erstgespräch anfragen
+					</a>
+					<p class="mt-6 text-xs opacity-70">
+						Sie interessieren sich für Schamanismus?{' '}
+						<a
+							href="https://www.carinahillenbrand.com/"
+							target="_blank"
+							rel="noopener"
+							class="underline underline-offset-2 transition hover:opacity-70"
+						>
+							carinahillenbrand.com &rarr;
+						</a>
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- Wortband: läuft langsam durch, steht bei „Bewegung reduzieren“ still -->
+		<div
+			class="overflow-hidden border-y border-cream/12 bg-night-soft py-4 select-none"
+			aria-hidden="true"
+		>
+			<div class="flex w-max animate-banderole motion-reduce:animate-none">
+				{[0, 1, 2, 3].map(() => (
+					<ul class="flex shrink-0 items-center">
+						{banderole.map((wort) => (
+							<li class="flex items-center font-display text-[13px] font-bold tracking-[0.08em] whitespace-nowrap uppercase">
+								{wort}
+								<span class="mx-8 text-accent-light">◉</span>
+							</li>
+						))}
+					</ul>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<div class="mx-auto w-full max-w-[1100px] leading-normal font-light">
+		<!-- Über mich -->
+		<section
+			class={`grid items-center gap-10 py-24 sm:py-32 lg:grid-cols-[1fr_340px] lg:gap-12 ${sectionPad}`}
+		>
+			<div>
+				<p class={eyebrow}>Über mich</p>
+				<h2 class={h2}>Ich bin Carina Hillenbrand.</h2>
+				<p class={body}>
+					Systemische Personal- und Business-Coach, Psychodrama-Expertin,
+					System- und Teamcoach sowie Trainerin und Ausbilderin für
+					Sterbebegleiter:innen.
+				</p>
+				<p class={body}>
+					Seit vielen Jahren begleite ich Menschen, Teams und Organisationen in
+					Veränderungsprozessen. Meine Arbeit steht für Klarheit, Wertschätzung
+					und nachhaltige Wirkung.
+				</p>
+				<p class={body}>
+					Neben meiner Coaching- und Trainingstätigkeit bilde ich
+					Sterbebegleiter:innen aus – eine Aufgabe, die zeigt, wie wichtig
+					Präsenz, Mut und echte Verbindung in Übergängen sind.
+				</p>
+				<p class={body}>
+					Und: Meine Erfahrung als Schamanin bringt eine zusätzliche Tiefe in
+					meine Arbeit – für alle, die über Zahlen, Strukturen und Strategien
+					hinaus auch Sinn, Haltung und Bewusstsein in ihre Entscheidungen
+					einbeziehen möchten.
+				</p>
+				<a
+					href={mailto}
+					class="mt-6 inline-block border-b-2 border-b-accent-light pb-0.5 font-display text-[15px] font-semibold transition hover:border-b-cream"
+				>
+					Nachricht senden &rarr;
+				</a>
+			</div>
+
+			<Image
+				src={carinaVortrag}
+				alt="Carina Hillenbrand im Gespräch, im Freien vor grünen Bäumen"
+				widths={[340, 680]}
+				sizes="(min-width: 1024px) 340px, 100vw"
+				loading="lazy"
+				class={`h-96 w-full object-cover object-top sm:h-120 ${photoGrade}`}
+			/>
+		</section>
+
+		<!-- Klarheit trifft Tiefgang -->
+		<section class={`border-t border-cream/12 py-24 sm:py-32 ${sectionPad}`}>
+			<p class={eyebrow}>Klarheit trifft Tiefgang</p>
+			<div class="mt-8 grid gap-6 sm:grid-cols-3">
+				{prinzipien.map(({ title, text, image, alt }) => (
+					<div class="bg-night-soft">
+						<Image
+							src={image}
+							alt={alt}
+							widths={[360, 720]}
+							sizes="(min-width: 640px) 33vw, 100vw"
+							loading="lazy"
+							class={`aspect-square w-full object-cover ${photoGrade}`}
+						/>
+						<div class="border-l-4 border-l-accent px-6 py-6">
+							<h3 class="font-display text-xl font-extrabold tracking-[-0.02em]">
+								{title}
+							</h3>
+							<p class="mt-2 text-sm leading-[1.6] opacity-85">{text}</p>
+						</div>
+					</div>
+				))}
+			</div>
+			<p class="mt-16 max-w-[34ch] font-display text-[clamp(22px,3.5vw,30px)] leading-[1.25] font-bold tracking-[-0.02em]">
+				Ob im Business, in der Führung oder im Team: Ich öffne gemeinsam mit
+				Ihnen Räume, in denen Entwicklung möglich wird.
+			</p>
+			<p class="mt-4 font-display text-lg font-semibold text-accent-light">
+				Ehrlich, professionell und transformierend.
+			</p>
+		</section>
+
+		<!-- Meine Angebote -->
+		<section class={`border-t border-cream/12 py-24 sm:py-32 ${sectionPad}`}>
+			<p class={eyebrow}>Meine Angebote</p>
+			<div class="mt-8 grid gap-4.5 lg:grid-cols-2">
+				{angebote.map(({ title, text }) => (
+					<div class="border-l-4 border-l-accent bg-night-soft px-7 py-8">
+						<h3 class="font-display text-2xl font-extrabold tracking-[-0.02em]">
+							{title}
+						</h3>
+						<p class="mt-3 text-[15px] leading-[1.65] opacity-85">{text}</p>
+					</div>
+				))}
+			</div>
+		</section>
+
+		<!-- Erstgespräch -->
+		<section
+			class={`border-t border-cream/12 py-24 text-center sm:py-32 ${sectionPad}`}
+		>
+			<h2 class="mx-auto max-w-[20ch] font-display text-[clamp(30px,5.5vw,48px)] leading-[1.08] font-extrabold tracking-[-0.03em]">
+				Die beste Zeit, Klarheit zu schaffen, ist jetzt.
+			</h2>
+			<p class="mx-auto mt-6 max-w-[44ch] text-lg leading-[1.6] opacity-85">
+				Vereinbaren Sie Ihr kostenloses Erstgespräch – online oder vor Ort.
+			</p>
+			<a href={mailto} class={`mt-10 ${button}`}>
+				Jetzt Erstgespräch vereinbaren
+			</a>
+		</section>
+
+		<!-- Für wen -->
+		<section
+			class={`grid items-center gap-10 border-t border-cream/12 py-24 sm:py-32 lg:grid-cols-2 lg:gap-14 ${sectionPad}`}
+		>
+			<div>
+				<p class={eyebrow}>Zielgruppe</p>
+				<h2 class={h2}>Für wen ist mein Coaching?</h2>
+				<ul class="mt-6 space-y-4">
+					{zielgruppen.map((text) => (
+						<li class="flex gap-4 text-[17px] leading-[1.6] opacity-90">
+							<span class="mt-1.5 text-xs text-accent-light">◉</span>
+							{text}
+						</li>
+					))}
+				</ul>
+			</div>
+			<Image
+				src={workshop}
+				alt="Coachin im Gespräch mit einem Team vor einer Pinnwand"
+				widths={[540, 1080]}
+				sizes="(min-width: 1024px) 540px, 100vw"
+				loading="lazy"
+				class={`aspect-[16/10] w-full object-cover ${photoGrade}`}
+			/>
+		</section>
+
+		<!-- So arbeiten wir zusammen -->
+		<section class={`border-t border-cream/12 py-24 sm:py-32 ${sectionPad}`}>
+			<p class={eyebrow}>Ablauf</p>
+			<h2 class={h2}>So arbeiten wir zusammen</h2>
+			<ol class="mt-10 grid gap-px bg-cream/12 sm:grid-cols-2 lg:grid-cols-4">
+				{schritte.map(({ title, text }, i) => (
+					<li class="bg-night py-6 sm:px-6 sm:first:pl-0 lg:py-0">
+						<span class="font-display text-[34px] font-extrabold tracking-[-0.03em] text-accent-light">
+							{String(i + 1).padStart(2, '0')}
+						</span>
+						<h3 class="mt-2 font-display text-lg font-bold">{title}</h3>
+						<p class="mt-1 text-sm opacity-75">{text}</p>
+					</li>
+				))}
+			</ol>
+			<a href={mailto} class={`mt-14 ${button}`}>
+				Jetzt Erstgespräch vereinbaren
+			</a>
+		</section>
+
+		<!-- Abschluss -->
+		<section
+			class={`flex flex-col items-center border-t border-cream/12 py-24 text-center sm:py-32 ${sectionPad}`}
+		>
+			<Image
+				src={carinaPortrait}
+				alt="Porträt von Carina Hillenbrand"
+				widths={[160, 320]}
+				sizes="160px"
+				loading="lazy"
+				class="size-40 rounded-full object-cover"
+			/>
+			<h2 class="mt-8 font-display text-[clamp(24px,4vw,32px)] font-extrabold tracking-[-0.03em]">
+				Ich freue mich darauf, Sie kennenzulernen!
+			</h2>
+			<p class="mt-4 text-lg opacity-85">
+				Herzlichst,
+				<br />
+				Ihre Carina Hillenbrand
+			</p>
+			<ul class="mt-8 flex flex-wrap justify-center gap-x-8 gap-y-3 font-display text-sm font-semibold">
+				<li>
+					<a
+						href={`mailto:${CONTACT.email}`}
+						class="text-accent-light transition hover:text-cream"
+					>
+						{CONTACT.email}
+					</a>
+				</li>
+				<li>
+					<a
+						href={CONTACT.phoneHref}
+						class="text-accent-light transition hover:text-cream"
+					>
+						{CONTACT.phone}
+					</a>
+				</li>
+				<li>
+					<a
+						href={CONTACT.linkedin}
+						target="_blank"
+						rel="noopener"
+						class="text-accent-light transition hover:text-cream"
+					>
+						LinkedIn
+					</a>
+				</li>
+			</ul>
+		</section>
+	</div>
+</BaseLayout>
