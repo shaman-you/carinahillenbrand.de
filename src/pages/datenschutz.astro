@@ -2,8 +2,8 @@
 import { CONTACT } from '../consts';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const h2 = 'font-display font-semibold text-cream';
-const link = 'underline underline-offset-2 transition hover:text-cream';
+const h2 = 'font-display font-semibold text-ink';
+const link = 'underline underline-offset-2 transition hover:text-ink';
 ---
 
 <BaseLayout
@@ -14,7 +14,7 @@ const link = 'underline underline-offset-2 transition hover:text-cream';
 		Datenschutzerklärung
 	</h1>
 
-	<div class="mt-10 space-y-8 leading-[1.7] text-cream/70">
+	<div class="mt-10 space-y-8 leading-[1.7] text-ink/70">
 		<section>
 			<h2 class={h2}>Verantwortliche Stelle</h2>
 			<p class="mt-2">
@@ -42,14 +42,14 @@ const link = 'underline underline-offset-2 transition hover:text-cream';
 				Wir speichern personenbezogene Daten so lange, wie es für den jeweiligen
 				Zweck erforderlich ist, oder bis Sie der Verarbeitung widersprechen bzw.
 				Ihre Einwilligung widerrufen. Gesetzliche Aufbewahrungspflichten, etwa
-				aus dem Handels- und Steuerrecht, bleiben davon unberührt.
+				aus dem Handelsrecht und dem Steuerrecht, bleiben davon unberührt.
 			</p>
 		</section>
 
 		<section>
 			<h2 class={h2}>Hosting</h2>
 			<p class="mt-2">
-				Diese Website wird bei Cloudflare gehostet, die Domain liegt bei
+				Diese Website wird bei Cloudflare gehostet, die Domain liegt bei der
 				checkdomain GmbH, Große Burgstraße 27/29, 23552 Lübeck. Beim Aufruf der
 				Seite werden technisch notwendige Daten (u. a. IP-Adresse, Zeitpunkt,
 				aufgerufene Ressource) verarbeitet. Die Übertragung erfolgt durchgehend
@@ -69,12 +69,38 @@ const link = 'underline underline-offset-2 transition hover:text-cream';
 		</section>
 
 		<section>
+			<h2 class={h2}>Terminbuchung über meetergo</h2>
+			<p class="mt-2">
+				Für die Buchung eines Erstgesprächs verlinken wir auf unseren Kalender
+				beim Dienst meetergo (meetergo GmbH, Hauptstraße 44, 40789 Monheim am
+				Rhein). Die Buchungsseite ist nicht in diese Website eingebunden. Beim
+				bloßen Aufruf dieser Website werden also keine Daten an meetergo
+				übertragen. Erst wenn Sie dem Link folgen und einen Termin buchen,
+				verarbeitet meetergo in unserem Auftrag die Daten, die Sie dabei angeben
+				(zum Beispiel Name, E-Mail und gewünschter Termin). Wir nutzen diese
+				Daten, um das Gespräch mit Ihnen zu vereinbaren und durchzuführen (Art.
+				6 Abs. 1 lit. b DSGVO). meetergo speichert die Daten nach eigenen
+				Angaben vorrangig im Europäischen Wirtschaftsraum. Näheres finden Sie in
+				der{' '}
+				<a
+					href="https://meetergo.com/datenschutz"
+					target="_blank"
+					rel="noopener"
+					class={link}
+				>
+					Datenschutzerklärung von meetergo
+				</a>
+				.
+			</p>
+		</section>
+
+		<section>
 			<h2 class={h2}>Soziale Medien</h2>
 			<p class="mt-2">
 				Wir verlinken auf dieser Website auf unser Profil bei LinkedIn (LinkedIn
 				Ireland Unlimited Company, Wilton Plaza, Wilton Place, Dublin 2,
 				Irland). Es handelt sich dabei um einen einfachen Link, es ist kein
-				Plugin von LinkedIn eingebunden — beim bloßen Aufruf dieser Website
+				Plugin von LinkedIn eingebunden. Beim bloßen Aufruf dieser Website
 				werden also keine Daten an LinkedIn übertragen. Erst wenn Sie dem Link
 				folgen, gilt die Datenschutzerklärung von LinkedIn.
 			</p>
@@ -92,8 +118,8 @@ const link = 'underline underline-offset-2 transition hover:text-cream';
 		<section>
 			<h2 class={h2}>Cookies und Tracking</h2>
 			<p class="mt-2">
-				Wir setzen auf dieser Website keine Cookies und keine Analyse- oder
-				Tracking-Tools ein.
+				Wir setzen auf dieser Website keine Cookies und keine Werkzeuge zur
+				Besucheranalyse oder zum Tracking ein.
 			</p>
 		</section>
 
@@ -102,7 +128,7 @@ const link = 'underline underline-offset-2 transition hover:text-cream';
 			<p class="mt-2">
 				Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung
 				der Verarbeitung, Datenübertragbarkeit und Widerspruch sowie ein
-				Beschwerderecht bei einer Aufsichtsbehörde, für uns zuständig ist das
+				Beschwerderecht bei einer Aufsichtsbehörde. Für uns zuständig ist das
 				Bayerische Landesamt für Datenschutzaufsicht (BayLDA). Eine erteilte
 				Einwilligung können Sie jederzeit mit Wirkung für die Zukunft
 				widerrufen.

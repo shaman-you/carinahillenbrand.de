@@ -2,8 +2,8 @@
 
 Statische Website: **Astro 7 + Tailwind 4**, **pnpm**, Deployment auf **Cloudflare Pages**. Schwesterprojekt
 von carinahillenbrand.com (Schamanismus); diese Seite ist Carinas Business-Auftritt: systemisches
-Coaching, Teamcoaching, Training. Gleicher Aufbau und Stil wie die .com, nur die Akzentfarbe ist
-Salbeigrün.
+Coaching, Teamcoaching, Training. Gleicher Aufbau wie die .com, aber hell: weißer Grund, schwarze
+Schrift, Akzent Petrol.
 
 ## Wer hier arbeitet
 
@@ -34,7 +34,7 @@ Wer technisch am Repo arbeitet, folgt dem Rest dieser Datei.
 ## Struktur
 
 - `src/pages/` — eine Datei, eine Route. Keine Content Collections, Inhalte stehen in den Seiten.
-- `src/layouts/BaseLayout.astro` — einziges Layout, immer dunkel. Props: `title`, `description`,
+- `src/layouts/BaseLayout.astro` — einziges Layout, immer hell. Props: `title`, `description`,
   `noindex`, `image`, `imageAlt`, `wide` (ohne schmale Textspalte, für vollbreite Abschnitte).
 - `src/consts.ts` — Titel, Beschreibung, Sprache, Kontaktdaten, Navigation. Nav-Einträge hier ergänzen,
   nicht im Header; ab zwei Einträgen erscheint die Navigation.
@@ -45,14 +45,16 @@ Wer technisch am Repo arbeitet, folgt dem Rest dieser Datei.
 
 ## Konventionen
 
-- **Farben:** `night`/`night-soft` als Grund, `cream` für Text — dieselben Werte wie auf der .com.
-  Akzent `accent` (#55764A) für Linien und Flächen, `accent-light` (#6E9163) für Text, Buttons und
-  Hover: Das dunklere Grün hat auf Schwarz zu wenig Kontrast für Text. Buttons sind `bg-accent-light`
-  mit `text-night`.
+- **Farben:** `paper` (#FFFFFF) / `paper-soft` als Grund, `ink` (#0A0A0A) für Text. Akzent `accent`
+  (#1F5C63) für Text, Buttons und Fokusrahmen, `accent-light` (#3D8A91) nur für Linien und Hover: Das
+  hellere Petrol hat auf Weiß zu wenig Kontrast für kleinen Text. Buttons sind `bg-accent` mit
+  `text-paper`.
 - **Ansprache „Sie"**, anders als die .com („du"). Normale Groß-/Kleinschreibung.
+- **Keine Gedanken- und Bindestriche in sichtbaren Texten** (Carinas Wunsch): umformulieren oder
+  zusammenschreiben („Businesscoachin"). Ausnahmen nur, wo die Schreibung fest ist: „E-Mail", „IP-Adresse".
 - **Tailwind v4 über `@tailwindcss/vite`** (in `astro.config.mjs`), bewusst **ohne `tailwind.config.js`**:
   Farben, Fonts und Spacing gehören in den `@theme`-Block. `@astrojs/tailwind` ist der v3-Pfad und tabu.
-- Design-Tokens statt Hex-Werte — `text-cream`, `bg-night`, `text-accent-light`.
+- Design-Tokens statt Hex-Werte — `text-ink`, `bg-paper`, `text-accent`.
 - TypeScript bleibt auf `^6`: `@astrojs/check` und `typescript-eslint` können TS 7 noch nicht.
 - pnpm-Einstellungen stehen in `pnpm-workspace.yaml` — pnpm ≥ 10 liest das `pnpm`-Feld der `package.json`
   nicht mehr.
@@ -62,8 +64,9 @@ Wer technisch am Repo arbeitet, folgt dem Rest dieser Datei.
 
 ## Kontakt
 
-Es gibt kein Kontaktformular. Alle „Erstgespräch"-Buttons sind `mailto:`-Links auf
-`CONTACT.email` (coaching@…), wie auf der früheren WordPress-Seite. Impressum und Datenschutz nennen
+Es gibt kein Kontaktformular. Alle „Erstgespräch"-Buttons verlinken auf die Terminbuchung bei meetergo
+(`CONTACT.booking`). „Nachricht senden" und der Kontaktbereich sind `mailto:`-Links auf `CONTACT.email`
+(coaching@…). Impressum und Datenschutz nennen
 `CONTACT.legalEmail` (host@…).
 
 ## Deployment und CI

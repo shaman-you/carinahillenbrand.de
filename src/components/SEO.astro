@@ -18,10 +18,10 @@ const {
 	description = SITE.description,
 	noindex = false,
 	image = ogStandard,
-	imageAlt = 'Carina Hillenbrand, systemischer Coach in Stein bei Nürnberg',
+	imageAlt = 'Carina Hillenbrand, systemische Coachin in Stein bei Nürnberg',
 } = Astro.props;
 
-const pageTitle = title ? `${title} — ${SITE.title}` : SITE.title;
+const pageTitle = title ? `${title} | ${SITE.title}` : SITE.title;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 /** Muss absolut sein — relative Pfade lesen die Vorschau-Crawler nicht. */
 const ogImage = new URL(image.src, Astro.site);

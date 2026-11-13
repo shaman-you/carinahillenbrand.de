@@ -2,14 +2,17 @@
 export const SITE = {
 	title: 'Carina Hillenbrand',
 	description:
-		'Systemisches Coaching für Führung, Teams und persönliche Entwicklung . Carina Hillenbrand, Business-Coach, Trainerin und Ausbilderin in Stein bei Nürnberg.',
+		'Systemisches Coaching für Führung, Teams und persönliche Entwicklung. Carina Hillenbrand, Business-Coachin und Trainerin in Stein bei Nürnberg.',
 	lang: 'de',
 	locale: 'de_DE',
 } as const;
 
 /** Kontaktdaten — an einer Stelle, weil Startseite, Impressum und Datenschutz sie nutzen. */
 export const CONTACT = {
-	/** Ziel aller „Erstgespräch"-Buttons, wie auf der bisherigen Seite. */
+	/** Ziel aller „Erstgespräch"-Buttons: Terminbuchung bei meetergo. */
+	booking:
+		'https://cal.meetergo.com/host/30-minuten-kennenlerngesprach-business-coaching?lang=de',
+	/** Mailadresse für „Nachricht senden" und den Kontaktbereich. */
 	email: 'coaching@carinahillenbrand.com',
 	/** Adresse für Impressum und Datenschutz, wie auf der bisherigen Seite. */
 	legalEmail: 'host@carinahillenbrand.com',

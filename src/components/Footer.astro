@@ -4,21 +4,18 @@ import { SITE } from '../consts';
 const year = new Date().getFullYear();
 ---
 
-<footer class="mt-24 border-t border-cream/12">
-	<div class="mx-auto flex max-w-[1100px] flex-col gap-2 px-6 py-8 text-sm text-cream/55 sm:flex-row sm:items-center sm:justify-between sm:px-10 lg:px-14">
-		<p>
-			© {year}
-			{SITE.title}
-		</p>
+<footer class="mt-24 border-t border-ink/12">
+	<div class="mx-auto flex max-w-[1100px] flex-col gap-2 px-6 py-8 text-sm text-ink/55 sm:flex-row sm:items-center sm:justify-between sm:px-10 lg:px-14">
+		<p>{`© ${year} ${SITE.title}`}</p>
 		<nav aria-label="Rechtliches">
 			<ul class="flex gap-6">
 				<li>
-					<a href="/impressum/" class="transition hover:text-cream">
+					<a href="/impressum/" class="transition hover:text-ink">
 						Impressum
 					</a>
 				</li>
 				<li>
-					<a href="/datenschutz/" class="transition hover:text-cream">
+					<a href="/datenschutz/" class="transition hover:text-ink">
 						Datenschutz
 					</a>
 				</li>

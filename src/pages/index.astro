@@ -14,17 +14,19 @@ import * as schema from '../schema';
 
 /** Kleine Überschrift über einem Abschnitt, in der Akzentfarbe. */
 const eyebrow =
-	'font-display text-xs font-extrabold tracking-[0.09em] text-accent-light uppercase';
+	'font-display text-xs font-extrabold tracking-[0.09em] text-accent uppercase';
 const h2 =
 	'mt-4 font-display text-[clamp(26px,4.5vw,34px)] leading-[1.12] font-extrabold tracking-[-0.03em]';
 const body = 'mt-4 text-[17px] leading-[1.7] opacity-90';
 const sectionPad = 'px-6 sm:px-10 lg:px-14';
-/** Helles Salbeigrün mit dunkler Schrift: Das dunklere Grün hätte mit beiden Schriftfarben
- * zu wenig Kontrast für Text dieser Größe. */
+/** Petrol mit weißer Schrift; beim Überfahren schwarz. */
 const button =
-	'inline-block rounded-full bg-accent-light px-9 py-5 font-display text-base font-extrabold text-night transition hover:-translate-y-0.5 hover:bg-cream';
+	'inline-block rounded-full bg-accent px-9 py-5 font-display text-base font-extrabold text-paper transition hover:-translate-y-0.5 hover:bg-ink';
+/** Im dunklen Kopf umgekehrt: weißer Button mit Petrol-Schrift, beim Überfahren helles Petrol. */
+const heroButton =
+	'inline-block rounded-full bg-paper px-9 py-5 font-display text-base font-extrabold text-accent-deep transition hover:-translate-y-0.5 hover:bg-accent-pale';
 
-/** Alle „Erstgespräch"-Buttons öffnen eine Mail, wie auf der bisherigen Seite. */
+/** „Nachricht senden" öffnet eine Mail; die „Erstgespräch"-Buttons führen zur Terminbuchung. */
 const mailto = `mailto:${CONTACT.email}?subject=${encodeURIComponent('Erstgespräch')}`;
 
 /** Einheitliche Farbstimmung für alle Bilder, wie auf carinahillenbrand.com. */
@@ -39,7 +41,6 @@ const banderole = [
 	'Aufstellungsarbeit',
 	'Psychodrama',
 	'Training',
-	'Sterbebegleitung',
 ];
 
 const prinzipien = [
@@ -51,7 +52,7 @@ const prinzipien = [
 	},
 	{
 		title: 'Ressourcen aktivieren',
-		text: 'Die Lösungen liegen bereits in Ihnen. Ich begleite dabei, diese sichtbar zu machen.',
+		text: 'Die Lösungen liegen bereits in Ihnen. Ich begleite Sie dabei, diese sichtbar zu machen.',
 		image: ressourcenAktivieren,
 		alt: 'Reihe von Holzfiguren, eine davon leuchtet von innen',
 	},
@@ -70,15 +71,15 @@ const angebote = [
 	},
 	{
 		title: 'Teamcoaching & Organisationsentwicklung',
-		text: 'Für Teams, die Zusammenarbeit und Kommunikation stärken wollen – auch mit Methoden wie systemischer Aufstellungsarbeit.',
+		text: 'Für Teams, die Zusammenarbeit und Kommunikation stärken wollen, auch mit Methoden wie systemischer Aufstellungsarbeit.',
 	},
 	{
-		title: 'Training & Ausbildung',
-		text: 'Ich leite Seminare und bilde Sterbebegleiter:innen aus. Wissen zu teilen und Menschen in ihrer Rolle wachsen zu sehen, ist ein zentraler Teil meiner Arbeit.',
+		title: 'Training & Seminare',
+		text: 'Ich leite Seminare und Workshops. Wissen zu teilen und Menschen in ihrer Rolle wachsen zu sehen, ist ein zentraler Teil meiner Arbeit.',
 	},
 	{
 		title: 'Persönliches Coaching',
-		text: 'Für Menschen, die in Wendepunkten Orientierung, Selbstvertrauen und neue Perspektiven suchen – beruflich wie privat.',
+		text: 'Für Menschen, die an Wendepunkten Orientierung, Selbstvertrauen und neue Perspektiven suchen, beruflich wie privat.',
 	},
 ];
 
@@ -106,14 +107,14 @@ const personLd = schema.personLd(Astro.site!, carinaPortrait.src);
 <BaseLayout
 	wide
 	title="Systemisches Coaching in Stein bei Nürnberg"
-	description="Coaching, das Türen öffnet – für Sie, Ihr Team, Ihr Business. Systemisches Coaching für Führung, Teams und persönliche Entwicklung."
+	description="Coaching, das Türen öffnet: für Sie, Ihr Team, Ihr Business. Systemisches Coaching für Führung, Teams und persönliche Entwicklung."
 >
 	<JsonLd slot="head" data={websiteLd} />
 	<JsonLd slot="head" data={personLd} />
 
 	<!-- Kopf: Bild über die volle Breite, Text links darüber, darunter das Wortband -->
 	<section>
-		<div class="relative overflow-hidden">
+		<div class="relative overflow-hidden bg-accent-deep text-paper">
 			<Image
 				src={aufstellung}
 				alt=""
@@ -122,47 +123,36 @@ const personLd = schema.personLd(Astro.site!, carinaPortrait.src);
 				priority
 				class={`absolute inset-0 h-full w-full object-cover ${photoGrade}`}
 			/>
-			<div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(10,10,10,0.92)_0%,rgba(10,10,10,0.6)_55%,rgba(10,10,10,0.2)_100%)]"></div>
-			<div class="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_60%,var(--color-night)_100%)]"></div>
+			<!-- Tiefes Petrol über dem Foto: auf dem Handy gleichmäßig, ab Tablet links dicht für den Text, rechts offen fürs Bild -->
+			<div class="absolute inset-0 bg-accent-deep/85 sm:bg-transparent sm:bg-[linear-gradient(to_right,rgb(12_43_47/0.95)_0%,rgb(12_43_47/0.8)_50%,rgb(12_43_47/0.35)_100%)]"></div>
 			<div
 				class={`relative mx-auto flex min-h-[70svh] w-full max-w-[1100px] items-center py-20 sm:py-28 ${sectionPad}`}
 			>
 				<div>
-					<span class="inline-flex rounded-full border border-accent-light px-5 py-2.5 font-display text-xs font-extrabold tracking-[0.09em] text-accent-light uppercase">
+					<span class="inline-flex rounded-full border border-accent-pale/60 px-5 py-2.5 font-display text-xs font-extrabold tracking-[0.09em] text-accent-pale uppercase">
 						Coaching, das Türen öffnet
 					</span>
 					<h1 class="mt-8 max-w-[18ch] font-display text-[clamp(38px,6.5vw,68px)] leading-[1.02] font-extrabold tracking-[-0.04em]">
-						Systemisches Coaching für Führung, Teams und
-						<span class="text-cream/40">persönliche Entwicklung.</span>
+						Systemisches Coaching für Führung, Teams und{' '}
+						<span class="text-accent-pale">persönliche Entwicklung.</span>
 					</h1>
 					<p class="mt-8 max-w-[52ch] text-lg leading-[1.6] opacity-85">
 						Ich begleite Menschen und Organisationen dabei, Klarheit zu
 						gewinnen, Entscheidungen mit Stärke zu treffen und Veränderungen
-						nachhaltig zu gestalten. Als systemische Personal- und
-						Business-Coachin, Trainerin und Ausbilderin begleite ich Sie –
-						professionell, menschlich, wirkungsvoll.
+						nachhaltig zu gestalten. Als systemische Personalcoachin,
+						Businesscoachin und Trainerin begleite ich Sie professionell,
+						menschlich und wirkungsvoll.
 					</p>
-					<a href={mailto} class={`mt-10 ${button}`}>
+					<a href={CONTACT.booking} class={`mt-10 ${heroButton}`}>
 						Jetzt Erstgespräch anfragen
 					</a>
-					<p class="mt-6 text-xs opacity-70">
-						Sie interessieren sich für Schamanismus?{' '}
-						<a
-							href="https://www.carinahillenbrand.com/"
-							target="_blank"
-							rel="noopener"
-							class="underline underline-offset-2 transition hover:opacity-70"
-						>
-							carinahillenbrand.com &rarr;
-						</a>
-					</p>
 				</div>
 			</div>
 		</div>
 
 		<!-- Wortband: läuft langsam durch, steht bei „Bewegung reduzieren“ still -->
 		<div
-			class="overflow-hidden border-y border-cream/12 bg-night-soft py-4 select-none"
+			class="overflow-hidden border-y border-ink/12 bg-paper-soft py-4 select-none"
 			aria-hidden="true"
 		>
 			<div class="flex w-max animate-banderole motion-reduce:animate-none">
@@ -171,7 +161,7 @@ const personLd = schema.personLd(Astro.site!, carinaPortrait.src);
 						{banderole.map((wort) => (
 							<li class="flex items-center font-display text-[13px] font-bold tracking-[0.08em] whitespace-nowrap uppercase">
 								{wort}
-								<span class="mx-8 text-accent-light">◉</span>
+								<span class="mx-8 text-accent">◉</span>
 							</li>
 						))}
 					</ul>
@@ -189,9 +179,8 @@ const personLd = schema.personLd(Astro.site!, carinaPortrait.src);
 				<p class={eyebrow}>Über mich</p>
 				<h2 class={h2}>Ich bin Carina Hillenbrand.</h2>
 				<p class={body}>
-					Systemische Personal- und Business-Coach, Psychodrama-Expertin,
-					System- und Teamcoach sowie Trainerin und Ausbilderin für
-					Sterbebegleiter:innen.
+					Systemische Personalcoachin und Businesscoachin, Psychodramaexpertin,
+					Systemcoach, Teamcoach und Trainerin.
 				</p>
 				<p class={body}>
 					Seit vielen Jahren begleite ich Menschen, Teams und Organisationen in
@@ -199,19 +188,19 @@ const personLd = schema.personLd(Astro.site!, carinaPortrait.src);
 					und nachhaltige Wirkung.
 				</p>
 				<p class={body}>
-					Neben meiner Coaching- und Trainingstätigkeit bilde ich
-					Sterbebegleiter:innen aus – eine Aufgabe, die zeigt, wie wichtig
-					Präsenz, Mut und echte Verbindung in Übergängen sind.
+					Viele Jahre habe ich außerdem Sterbebegleiter:innen ausgebildet. Diese
+					Aufgabe hat mir gezeigt, wie wichtig Präsenz, Mut und echte Verbindung
+					in Übergängen sind.
 				</p>
 				<p class={body}>
 					Und: Meine Erfahrung als Schamanin bringt eine zusätzliche Tiefe in
-					meine Arbeit – für alle, die über Zahlen, Strukturen und Strategien
+					meine Arbeit, für alle, die über Zahlen, Strukturen und Strategien
 					hinaus auch Sinn, Haltung und Bewusstsein in ihre Entscheidungen
 					einbeziehen möchten.
 				</p>
 				<a
 					href={mailto}
-					class="mt-6 inline-block border-b-2 border-b-accent-light pb-0.5 font-display text-[15px] font-semibold transition hover:border-b-cream"
+					class="mt-6 inline-block border-b-2 border-b-accent-light pb-0.5 font-display text-[15px] font-semibold transition hover:border-b-ink"
 				>
 					Nachricht senden &rarr;
 				</a>
@@ -228,11 +217,11 @@ const personLd = schema.personLd(Astro.site!, carinaPortrait.src);
 		</section>
 
 		<!-- Klarheit trifft Tiefgang -->
-		<section class={`border-t border-cream/12 py-24 sm:py-32 ${sectionPad}`}>
+		<section class={`border-t border-ink/12 py-24 sm:py-32 ${sectionPad}`}>
 			<p class={eyebrow}>Klarheit trifft Tiefgang</p>
 			<div class="mt-8 grid gap-6 sm:grid-cols-3">
 				{prinzipien.map(({ title, text, image, alt }) => (
-					<div class="bg-night-soft">
+					<div class="bg-paper-soft">
 						<Image
 							src={image}
 							alt={alt}
@@ -254,17 +243,17 @@ const personLd = schema.personLd(Astro.site!, carinaPortrait.src);
 				Ob im Business, in der Führung oder im Team: Ich öffne gemeinsam mit
 				Ihnen Räume, in denen Entwicklung möglich wird.
 			</p>
-			<p class="mt-4 font-display text-lg font-semibold text-accent-light">
+			<p class="mt-4 font-display text-lg font-semibold text-accent">
 				Ehrlich, professionell und transformierend.
 			</p>
 		</section>
 
 		<!-- Meine Angebote -->
-		<section class={`border-t border-cream/12 py-24 sm:py-32 ${sectionPad}`}>
+		<section class={`border-t border-ink/12 py-24 sm:py-32 ${sectionPad}`}>
 			<p class={eyebrow}>Meine Angebote</p>
 			<div class="mt-8 grid gap-4.5 lg:grid-cols-2">
 				{angebote.map(({ title, text }) => (
-					<div class="border-l-4 border-l-accent bg-night-soft px-7 py-8">
+					<div class="border-l-4 border-l-accent bg-paper-soft px-7 py-8">
 						<h3 class="font-display text-2xl font-extrabold tracking-[-0.02em]">
 							{title}
 						</h3>
@@ -276,22 +265,22 @@ const personLd = schema.personLd(Astro.site!, carinaPortrait.src);
 
 		<!-- Erstgespräch -->
 		<section
-			class={`border-t border-cream/12 py-24 text-center sm:py-32 ${sectionPad}`}
+			class={`border-t border-ink/12 py-24 text-center sm:py-32 ${sectionPad}`}
 		>
 			<h2 class="mx-auto max-w-[20ch] font-display text-[clamp(30px,5.5vw,48px)] leading-[1.08] font-extrabold tracking-[-0.03em]">
 				Die beste Zeit, Klarheit zu schaffen, ist jetzt.
 			</h2>
 			<p class="mx-auto mt-6 max-w-[44ch] text-lg leading-[1.6] opacity-85">
-				Vereinbaren Sie Ihr kostenloses Erstgespräch – online oder vor Ort.
+				Vereinbaren Sie Ihr kostenloses Erstgespräch, online oder vor Ort.
 			</p>
-			<a href={mailto} class={`mt-10 ${button}`}>
+			<a href={CONTACT.booking} class={`mt-10 ${button}`}>
 				Jetzt Erstgespräch vereinbaren
 			</a>
 		</section>
 
 		<!-- Für wen -->
 		<section
-			class={`grid items-center gap-10 border-t border-cream/12 py-24 sm:py-32 lg:grid-cols-2 lg:gap-14 ${sectionPad}`}
+			class={`grid items-center gap-10 border-t border-ink/12 py-24 sm:py-32 lg:grid-cols-2 lg:gap-14 ${sectionPad}`}
 		>
 			<div>
 				<p class={eyebrow}>Zielgruppe</p>
@@ -299,7 +288,7 @@ const personLd = schema.personLd(Astro.site!, carinaPortrait.src);
 				<ul class="mt-6 space-y-4">
 					{zielgruppen.map((text) => (
 						<li class="flex gap-4 text-[17px] leading-[1.6] opacity-90">
-							<span class="mt-1.5 text-xs text-accent-light">◉</span>
+							<span class="mt-1.5 text-xs text-accent">◉</span>
 							{text}
 						</li>
 					))}
@@ -316,13 +305,13 @@ const personLd = schema.personLd(Astro.site!, carinaPortrait.src);
 		</section>
 
 		<!-- So arbeiten wir zusammen -->
-		<section class={`border-t border-cream/12 py-24 sm:py-32 ${sectionPad}`}>
+		<section class={`border-t border-ink/12 py-24 sm:py-32 ${sectionPad}`}>
 			<p class={eyebrow}>Ablauf</p>
 			<h2 class={h2}>So arbeiten wir zusammen</h2>
-			<ol class="mt-10 grid gap-px bg-cream/12 sm:grid-cols-2 lg:grid-cols-4">
+			<ol class="mt-10 grid gap-px bg-ink/12 sm:grid-cols-2 lg:grid-cols-4">
 				{schritte.map(({ title, text }, i) => (
-					<li class="bg-night py-6 sm:px-6 sm:first:pl-0 lg:py-0">
-						<span class="font-display text-[34px] font-extrabold tracking-[-0.03em] text-accent-light">
+					<li class="bg-paper py-6 sm:px-6 sm:first:pl-0 lg:py-0">
+						<span class="font-display text-[34px] font-extrabold tracking-[-0.03em] text-accent">
 							{String(i + 1).padStart(2, '0')}
 						</span>
 						<h3 class="mt-2 font-display text-lg font-bold">{title}</h3>
@@ -330,14 +319,14 @@ const personLd = schema.personLd(Astro.site!, carinaPortrait.src);
 					</li>
 				))}
 			</ol>
-			<a href={mailto} class={`mt-14 ${button}`}>
+			<a href={CONTACT.booking} class={`mt-14 ${button}`}>
 				Jetzt Erstgespräch vereinbaren
 			</a>
 		</section>
 
 		<!-- Abschluss -->
 		<section
-			class={`flex flex-col items-center border-t border-cream/12 py-24 text-center sm:py-32 ${sectionPad}`}
+			class={`flex flex-col items-center border-t border-ink/12 py-24 text-center sm:py-32 ${sectionPad}`}
 		>
 			<Image
 				src={carinaPortrait}
@@ -359,7 +348,7 @@ const personLd = schema.personLd(Astro.site!, carinaPortrait.src);
 				<li>
 					<a
 						href={`mailto:${CONTACT.email}`}
-						class="text-accent-light transition hover:text-cream"
+						class="text-accent transition hover:text-ink"
 					>
 						{CONTACT.email}
 					</a>
@@ -367,7 +356,7 @@ const personLd = schema.personLd(Astro.site!, carinaPortrait.src);
 				<li>
 					<a
 						href={CONTACT.phoneHref}
-						class="text-accent-light transition hover:text-cream"
+						class="text-accent transition hover:text-ink"
 					>
 						{CONTACT.phone}
 					</a>
@@ -377,7 +366,7 @@ const personLd = schema.personLd(Astro.site!, carinaPortrait.src);
 						href={CONTACT.linkedin}
 						target="_blank"
 						rel="noopener"
-						class="text-accent-light transition hover:text-cream"
+						class="text-accent transition hover:text-ink"
 					>
 						LinkedIn
 					</a>

@@ -2,8 +2,8 @@
 import { CONTACT } from '../consts';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const h2 = 'font-display font-semibold text-cream';
-const link = 'underline underline-offset-2 transition hover:text-cream';
+const h2 = 'font-display font-semibold text-ink';
+const link = 'underline underline-offset-2 transition hover:text-ink';
 ---
 
 <BaseLayout
@@ -14,7 +14,7 @@ const link = 'underline underline-offset-2 transition hover:text-cream';
 		Impressum
 	</h1>
 
-	<div class="mt-10 space-y-8 leading-[1.7] text-cream/70">
+	<div class="mt-10 space-y-8 leading-[1.7] text-ink/70">
 		<section>
 			<h2 class={h2}>Angaben gemäß § 5 DDG</h2>
 			<p class="mt-2">
@@ -44,11 +44,8 @@ const link = 'underline underline-offset-2 transition hover:text-cream';
 		</section>
 
 		<section>
-			<h2 class={h2}>Umsatzsteuer-ID</h2>
-			<p class="mt-2">
-				Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:
-				DE354989774
-			</p>
+			<h2 class={h2}>Umsatzsteueridentifikationsnummer</h2>
+			<p class="mt-2">Gemäß § 27a Umsatzsteuergesetz: DE354989774</p>
 		</section>
 
 		<section>

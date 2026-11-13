@@ -16,7 +16,7 @@ export function personLd(site: URL, image: string) {
 		'@type': 'Person',
 		'@id': personId(site),
 		name: 'Carina Hillenbrand',
-		jobTitle: 'Systemischer Business-Coach, Trainerin und Ausbilderin',
+		jobTitle: 'Systemische Business-Coachin und Trainerin',
 		url: new URL('/', site).href,
 		image: new URL(image, site).href,
 		sameAs: ['https://www.carinahillenbrand.com/', CONTACT.linkedin],
