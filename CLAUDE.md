@@ -50,6 +50,8 @@ Wer technisch am Repo arbeitet, folgt dem Rest dieser Datei.
   hellere Petrol hat auf Weiß zu wenig Kontrast für kleinen Text. Buttons sind `bg-accent` mit
   `text-paper`.
 - **Ansprache „Sie"**, anders als die .com („du"). Normale Groß-/Kleinschreibung.
+- **Schamanismus:** Dass Carina Schamanin ist, darf im Text stehen. Aber keine sichtbaren Links oder
+  Hinweise, die Besucher aktiv zur .com schicken (der unsichtbare `sameAs`-Eintrag in `schema.ts` ist ok).
 - **Keine Gedanken- und Bindestriche in sichtbaren Texten** (Carinas Wunsch): umformulieren oder
   zusammenschreiben („Businesscoachin"). Ausnahmen nur, wo die Schreibung fest ist: „E-Mail", „IP-Adresse".
 - **Tailwind v4 über `@tailwindcss/vite`** (in `astro.config.mjs`), bewusst **ohne `tailwind.config.js`**:
